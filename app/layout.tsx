@@ -1,8 +1,8 @@
+import { ModalProvider } from "@/providers/modal-provider";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ModalProvider } from "@/providers/modal-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,21 +20,23 @@ export const metadata: Metadata = {
   description: "Admin Dashboard",
 };
 
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
+      <ClerkProvider>
         <ModalProvider/>
         {children}
+    </ClerkProvider>
       </body>
     </html>
-    </ClerkProvider>
   );
 }
